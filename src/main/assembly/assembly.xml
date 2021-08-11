@@ -1,0 +1,38 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+	<id>dist</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<dependencySets>
+		<dependencySet>
+			<outputDirectory>/</outputDirectory>
+			<includes>
+				<include>com.stmt:statement-processor</include>
+			</includes>
+			<outputFileNameMapping>statement.jar</outputFileNameMapping>
+			<scope>compile</scope>
+		</dependencySet>
+	</dependencySets>
+	<fileSets>
+		<fileSet>
+			<directory>${project.parent.basedir}/statement-processor/target/site/apidocs</directory>
+			<outputDirectory>/docs</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${project.basedir}/src/main/scripts</directory>
+			<outputDirectory>/</outputDirectory>
+		</fileSet>
+		<fileSet>
+			<directory>${project.parent.basedir}/statement-processor/src/main/resources/</directory>
+			<outputDirectory>/conf</outputDirectory>
+			<includes>
+				<include>application.properties</include>
+				<include>log4j.properties</include>
+				<include>logback-spring.xml</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
